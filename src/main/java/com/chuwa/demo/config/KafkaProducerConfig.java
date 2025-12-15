@@ -18,6 +18,7 @@ public class KafkaProducerConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     public String bootstrapServers;
 
+
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
@@ -32,10 +33,11 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
+
     @Bean
-    public NewTopic createTopic() {
+    public NewTopic createDeliveryGuaranteeTopic() {
         return new NewTopic(
-                "${kafka.topic.name}",
+                "delivery-guarantee-demo",
                 3,
                 (short) 2);
     }
