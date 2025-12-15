@@ -49,7 +49,7 @@ public class DeliveryGuaranteeConsumerService {
             Thread.sleep(100); // Simulate work
 
             // If crash happens here, message is LOST (offset already committed)
-            if (message.contains("crash-at-most-once")) {
+            if (message.contains("crash")) {
                 System.err.println("[AT-MOST-ONCE CONSUMER] Simulating crash - message lost!");
                 throw new RuntimeException("Simulated crash");
             }
@@ -92,7 +92,7 @@ public class DeliveryGuaranteeConsumerService {
 
 
             // If crash happens here, message is REPROCESSED (not yet committed)
-            if (message.contains("crash-at-least-once")) {
+            if (message.contains("crash")) {
                 System.err.println("[AT-LEAST-ONCE CONSUMER] Simulating crash before commit - message will be redelivered!");
                 throw new RuntimeException("Simulated crash before commit");
             }

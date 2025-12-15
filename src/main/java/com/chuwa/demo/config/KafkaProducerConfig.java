@@ -18,8 +18,6 @@ public class KafkaProducerConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     public String bootstrapServers;
 
-    @Value("${kafka.topic.name}")
-    private String topicName;
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
@@ -35,13 +33,7 @@ public class KafkaProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    @Bean
-    public NewTopic createTopic() {
-        return new NewTopic(
-                topicName,
-                3,
-                (short) 2);
-    }
+
 
     @Bean
     public NewTopic createDeliveryGuaranteeTopic() {
